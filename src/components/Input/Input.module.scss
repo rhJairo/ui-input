@@ -1,0 +1,19 @@
+@use '../../styles/functions' as *;
+
+.input {
+  height: pxToVh(90);
+  width: 100%;
+  line-height: 1.25rem;
+  outline: none;
+  font-size: 2rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  border: 0.5rem solid #cacaca;
+  border-radius: 0.5rem;
+
+  &:focus {
+    box-shadow: 0 0 0 3px rgba(59,130,246,0.15);
+    border-color: #0051ff;
+  }
+}

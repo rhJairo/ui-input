@@ -1,0 +1,71 @@
+{
+  "parser": "@typescript-eslint/parser",
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:react/recommended",
+    "plugin:react-hooks/recommended",
+    "plugin:jsx-a11y/recommended",
+    "plugin:prettier/recommended"
+  ],
+  "plugins": [
+    "@typescript-eslint",
+    "react",
+    "react-hooks",
+    "jsx-a11y",
+    "prettier"
+  ],
+  "rules": {
+    "prettier/prettier": [
+      "error",
+      {
+        "singleQuote": true,
+        "semi": true,
+        "endOfLine": "lf",
+        "trailingComma": "es5"
+      }
+    ],
+    /* ---- TypeScript ---- */
+    "@typescript-eslint/no-unused-vars": [
+      "warn",
+      { "argsIgnorePattern": "^_" }
+    ],
+    "@typescript-eslint/explicit-function-return-type": "off",
+    "@typescript-eslint/no-explicit-any": "warn",
+
+    /* ---- React ---- */
+    "react/prop-types": "off",
+    "react/jsx-uses-vars": "error",
+
+    /* ---- Hooks ---- */
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn",
+
+    /* ---- Import/order ---- */
+    "import/order": [
+      "warn",
+      {
+        "groups": [
+          "builtin",
+          "external",
+          "internal",
+          ["parent", "sibling"],
+          "index"
+        ],
+        "alphabetize": { "order": "asc", "caseInsensitive": true },
+        "newlines-between": "always"
+      }
+    ],
+
+    /* ---- General style ---- */
+    "no-console": "warn",
+    "no-debugger": "error",
+    "eol-last": ["error", "always"],
+    "no-trailing-spaces": "error"
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  }
+}

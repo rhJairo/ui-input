@@ -1,0 +1,7 @@
+@function pxToVw($px, $base-width: 1920) {
+  @return calc($px / $base-width) * 100vw;
+}
+
+@function pxToVh($px, $base-height: 1080) {
+  @return calc(#{$px} / #{$base-height} * 100vh);
+}

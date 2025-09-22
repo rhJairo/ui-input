@@ -1,0 +1,44 @@
+@use '../../styles/functions' as *;
+
+.button {
+  height: pxToVw(40);
+  width: 100%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2.5rem;
+  font-size: 2rem;
+  font-weight: 600;
+  border-radius: 0.5rem;
+  background-color: #616161;
+  cursor: pointer;
+  border: 0.5rem solid #616161;
+  color: #e2e2e2;
+  box-shadow: none;
+
+
+  .icon {
+    width: pxToVw(80);
+    height: pxToVh(80);
+    flex-shrink: 0;
+    stroke-width: 3px;
+  }
+
+  &:active {
+    border: 0.5rem solid #eeeeee;
+  }
+
+  &:focus-visible {
+    border: solid #0051ff;
+  }
+
+  &:disabled {
+    background-color: #7e7e7e;
+  }
+}
+
+.iconButton {
+  width: pxToVw(90);
+  height: pxToVh(90);
+  padding: 0;
+}
