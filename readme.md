@@ -6,6 +6,20 @@ A React + TypeScript component library with Webpack bundling. Includes ESLint + 
 
 ## Overview
 
+### Project Structure
+``` bash
+├── src/
+│   ├── components/   # Reusable UI components
+│   ├── pages/        # Page-level components
+│   ├── styles/       # Global and component styles
+│   └── index.tsx     # Entry point
+├── dist/             # Production build output
+├── webpack.config.js 
+├── eslint.config.js  
+├── tsconfig.json     
+└── package.json
+```
+
 ### Prerequisites
 - [Node.js](https://nodejs.org/) v18 or later
 - (I haven't tested this on macOS or linux. I've taken some measures, hopefully are enough)
