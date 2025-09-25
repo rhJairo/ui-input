@@ -6,7 +6,7 @@ export interface InputProps {
   value: string;
   onChange: (v: string) => void;
   placeholder?: string;
-  visible?: boolean;  
+  visible?: boolean;
   onFocus?: () => void;
 }
 

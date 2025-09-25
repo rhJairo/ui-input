@@ -49,7 +49,10 @@ export default function LoginPage() {
               visible={isVisible}
               onFocus={() => setFocusedField('password')}
             />
-            <Button onClick={togglePassword} icon={isVisible ? VisibleIcon : HiddenIcon} />
+            <Button
+              onClick={togglePassword}
+              icon={isVisible ? VisibleIcon : HiddenIcon}
+            />
           </div>
           <Button onClick={handleSubmit}>Sign In</Button>
         </div>

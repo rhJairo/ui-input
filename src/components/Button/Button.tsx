@@ -8,19 +8,11 @@ export interface ButtonProps {
   onClick: (value: any) => void;
 }
 
-const Button: React.FC<ButtonProps> = ({
-  children,
-  onClick,
-  icon: Icon,
-}) => {
-
+const Button: React.FC<ButtonProps> = ({ children, onClick, icon: Icon }) => {
   return (
     <button
       role="button"
-      className={clsx(
-        styles.button,
-        Icon && !children && styles.iconButton,
-      )}
+      className={clsx(styles.button, Icon && !children && styles.iconButton)}
       onClick={onClick}
     >
       {Icon && <Icon className={styles.icon} aria-hidden="true" />}

@@ -1,26 +1,21 @@
-import React, {
-  FunctionComponent,
-  useState,
-  useRef,
-  RefObject,
-} from "react";
-import Keyboard, { KeyboardReactInterface } from "react-simple-keyboard";
-import "react-simple-keyboard/build/css/index.css";
+import React, { FunctionComponent, useState, useRef, RefObject } from 'react';
+import Keyboard, { KeyboardReactInterface } from 'react-simple-keyboard';
+import 'react-simple-keyboard/build/css/index.css';
 
 interface KeyboardWrapperProps {
   onChange: (input: string) => void;
-  keyboardRef?:  React.RefObject<KeyboardReactInterface | null> | null;
+  keyboardRef?: React.RefObject<KeyboardReactInterface | null> | null;
 }
 
 export const KeyboardWrapper: FunctionComponent<KeyboardWrapperProps> = ({
   onChange,
-  keyboardRef
+  keyboardRef,
 }) => {
-  const [layoutName, setLayoutName] = useState<"default" | "shift">("default");
+  const [layoutName, setLayoutName] = useState<'default' | 'shift'>('default');
 
   const onKeyPress = (button: string) => {
-    if (button === "{shift}" || button === "{lock}") {
-      setLayoutName((prev) => (prev === "default" ? "shift" : "default"));
+    if (button === '{shift}' || button === '{lock}') {
+      setLayoutName((prev) => (prev === 'default' ? 'shift' : 'default'));
     }
   };
 
