@@ -5,15 +5,35 @@
   width: 100%;
   line-height: 1.25rem;
   outline: none;
+  caret-color: transparent;
+  user-select: none;
   font-size: 2rem;
   font-weight: 600;
   display: flex;
   align-items: center;
-  border: 0.5rem solid #cacaca;
+  border: 0.5rem solid #c2c2c2;
   border-radius: 0.5rem;
+  overflow: hidden;
 
   &:focus {
     box-shadow: 0 0 0 3px #3b82f626;
-    border-color: #0051ff;
+    border-color: #6a6e77;
+    align-items: baseline;
+
+    .caret {
+      position: relative;
+      display: inline-block;
+      width: 1px;
+      background: currentColor;
+      animation: blink 1s step-start infinite;
+      height: 3rem;
+      vertical-align: bottom;
+    }
+
+    @keyframes blink {
+      50% {
+        opacity: 0;
+      }
+    }
   }
 }

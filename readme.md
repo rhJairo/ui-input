@@ -8,16 +8,19 @@ A React + TypeScript component library with Webpack bundling. Includes ESLint + 
 
 ### Project Structure
 ``` bash
+
+├── public/              # Static assets
 ├── src/
-│   ├── components/   # Reusable UI components
-│   ├── pages/        # Page-level components
-│   ├── styles/       # Global and component styles
-│   └── index.tsx     # Entry point
-├── dist/             # Production build output
+│   ├── components/      # Reusable UI components
+│   ├── pages/           # Page-level components
+│   ├── styles/          # Global and component styles
+│   └── index.tsx        # Entry point
+├── dist/                # Production build output
 ├── webpack.config.js 
 ├── eslint.config.js  
 ├── tsconfig.json     
 └── package.json
+
 ```
 
 ### Prerequisites

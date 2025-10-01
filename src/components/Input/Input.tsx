@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import clsx from 'clsx';
 import * as styles from './Input.module.scss';
+import { handleInputKeyDown } from './helper';
 
 export interface InputProps {
   value: string;
@@ -17,30 +18,27 @@ export default function Input({
   visible = true,
   onFocus,
 }: InputProps) {
-  const ref = useRef<HTMLDivElement | null>(null);
-  const [revealActive, setRevealActive] = useState(false);
+  const [caretIndex, setCaretIndex] = useState(value.length);
+  const [revealIndex, setRevealIndex] = useState<number | null>(null);
   const timerRef = useRef<number | null>(null);
-  const maskChar = '•';
   const revealMs = 1000;
+  const maskChar = '•';
+  const containerRef = useRef<HTMLDivElement | null>(null);
 
-  const textDisplayed = (plainText: string) => {
-    if (visible) return plainText;
-    if (!plainText.length) return '';
-    if (revealActive) {
-      return maskChar.repeat(plainText.length - 1) + plainText.slice(-1);
-    }
-    return maskChar.repeat(plainText.length);
-  };
-
+  // Show last typed char
   useEffect(() => {
-    const inputRef = ref.current;
-    if (!inputRef) return;
-    const display = textDisplayed(value);
-    if (inputRef.textContent !== display) {
-      inputRef.textContent = display;
-      placeCaretAtEnd(inputRef);
+    if (!visible && value.length > 0) {
+      const lastIndex = value.length - 1;
+      setRevealIndex(lastIndex);
+
+      if (timerRef.current) clearTimeout(timerRef.current);
+      timerRef.current = window.setTimeout(() => {
+        setRevealIndex(null);
+      }, revealMs);
+    } else {
+      setRevealIndex(null);
     }
-  }, [value, visible, revealActive]);
+  }, [value, visible]);
 
   useEffect(() => {
     return () => {
@@ -48,78 +46,35 @@ export default function Input({
     };
   }, []);
 
-  const startRevealTimer = () => {
-    if (visible) return;
-    if (timerRef.current) clearTimeout(timerRef.current);
-    setRevealActive(true);
-    timerRef.current = window.setTimeout(() => {
-      setRevealActive(false);
-    }, revealMs);
+  const renderMasked = () => {
+    if (visible) return value.split('');
+    if (!value.length) return [];
+    return value.split('').map((ch, i) => (revealIndex === i ? ch : maskChar));
   };
 
-  function placeCaretAtEnd(el: HTMLElement) {
-    const range = document.createRange();
-    range.selectNodeContents(el);
-    range.collapse(false);
-    const sel = window.getSelection();
-    if (sel) {
-      sel.removeAllRanges();
-      sel.addRange(range);
-    }
-  }
-
-  const handleBeforeInput = (e: React.InputEvent<HTMLDivElement>) => {
-    const ev = e.nativeEvent;
-    const type = ev.type;
-
-    e.preventDefault();
-
-    if (type === 'textInput') {
-      const text = ev.data ?? '';
-      if (text) {
-        onChange(value + text);
-        startRevealTimer();
-      }
-      return;
-    }
-
-    if (type === 'deleteContentBackward') {
-      if (value.length) {
-        onChange(value.slice(0, -1));
-        setRevealActive(false);
-      }
-      return;
-    }
-  };
-
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
-    if (e.key === 'Backspace') {
-      e.preventDefault();
-      if (value.length) {
-        onChange(value.slice(0, -1));
-        setRevealActive(false);
-      }
-      return;
-    }
-    if (e.key === 'Enter' || e.key === 'NumpadEnter') {
-      e.preventDefault();
-    }
-  };
+  const chars = renderMasked();
 
   return (
     <div
-      ref={ref}
+      ref={containerRef}
       role="textbox"
-      aria-multiline={'false'}
+      aria-multiline="false"
       aria-label={placeholder}
       tabIndex={0}
-      contentEditable
-      suppressContentEditableWarning
       className={clsx(styles.input)}
       data-placeholder={placeholder}
-      onBeforeInput={handleBeforeInput}
-      onKeyDown={handleKeyDown}
+      onKeyDown={(e) =>
+        handleInputKeyDown(e, value, caretIndex, onChange, setCaretIndex)
+      }
       onFocus={onFocus}
-    />
+    >
+      {chars.map((char, position) => (
+        <span key={position}>
+          {position === caretIndex ? <span className={styles.caret} /> : null}
+          {char}
+        </span>
+      ))}
+      {caretIndex === chars.length && <span className={styles.caret} />}
+    </div>
   );
 }

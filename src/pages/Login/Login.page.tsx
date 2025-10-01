@@ -23,7 +23,7 @@ export default function LoginPage() {
   }, [username, password, focusedField]);
 
   function handleSubmit() {
-    console.log('Login', { username, password });
+    console.log('Login:', { username, password });
   }
 
   function togglePassword() {
