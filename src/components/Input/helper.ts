@@ -1,4 +1,3 @@
-
 export function handleInputKeyDown(
   e: React.KeyboardEvent<HTMLDivElement>,
   value: string,
@@ -6,7 +5,13 @@ export function handleInputKeyDown(
   onChange: (v: string) => void,
   setCaretIndex: (i: number) => void
 ) {
-  if (e.key.length === 1 && !e.ctrlKey && !e.metaKey && !e.altKey) {
+  if (
+    e.key.length === 1 &&
+    !e.ctrlKey &&
+    !e.metaKey &&
+    !e.altKey &&
+    e.key !== ' '
+  ) {
     e.preventDefault();
     const newValue =
       value.slice(0, caretIndex) + e.key + value.slice(caretIndex);
@@ -19,9 +24,7 @@ export function handleInputKeyDown(
     case 'Backspace':
       e.preventDefault();
       if (caretIndex > 0) {
-        onChange(
-          value.slice(0, caretIndex - 1) + value.slice(caretIndex)
-        );
+        onChange(value.slice(0, caretIndex - 1) + value.slice(caretIndex));
         setCaretIndex(caretIndex - 1);
       }
       break;
@@ -34,6 +37,7 @@ export function handleInputKeyDown(
       setCaretIndex(Math.min(value.length, caretIndex + 1));
       break;
     case 'Enter':
+    case ' ':
     case 'NumpadEnter':
       e.preventDefault();
       break;

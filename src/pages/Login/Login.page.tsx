@@ -9,6 +9,7 @@ export default function LoginPage() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [isVisible, setIsVisible] = useState(false);
+  const [inputError, setInputError] = useState<string | null>(null);
   const keyboardRef = useRef<KeyboardReactInterface>(null);
   const [focusedField, setFocusedField] = useState<
     'username' | 'password' | null
@@ -22,7 +23,15 @@ export default function LoginPage() {
     }
   }, [username, password, focusedField]);
 
+  function validateInputs(password: string): string | null {
+    if (!password.trim() || !username.trim())
+      return 'Input fields cannot be empty';
+
+    return null;
+  }
+
   function handleSubmit() {
+    setInputError(validateInputs(password));
     console.log('Login:', { username, password });
   }
 
@@ -58,6 +67,7 @@ export default function LoginPage() {
           </div>
           <Button onClick={handleSubmit}>Sign In</Button>
         </div>
+        <span className={styles.inputError}>{inputError}</span>
         <KeyboardWrapper
           onChange={(input: string) => {
             if (focusedField === 'username') setUsername(input);
