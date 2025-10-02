@@ -1,7 +1,8 @@
-import React, { useEffect, useRef, useState } from 'react';
 import clsx from 'clsx';
-import * as styles from './Input.module.scss';
+import React, { useEffect, useRef, useState } from 'react';
+
 import { handleInputKeyDown } from './helper';
+import * as styles from './Input.module.scss';
 
 export interface InputProps {
   value: string;

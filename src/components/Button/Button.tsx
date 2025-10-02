@@ -1,5 +1,6 @@
-import React, { useRef } from 'react';
 import clsx from 'clsx';
+import React from 'react';
+
 import * as styles from './Button.module.scss';
 
 export interface ButtonProps {
@@ -11,7 +12,6 @@ export interface ButtonProps {
 const Button: React.FC<ButtonProps> = ({ children, onClick, icon: Icon }) => {
   return (
     <button
-      role="button"
       className={clsx(styles.button, Icon && !children && styles.iconButton)}
       onClick={onClick}
     >

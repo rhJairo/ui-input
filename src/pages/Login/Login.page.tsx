@@ -1,9 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Input, Button, KeyboardWrapper } from '@/components';
-import { ReactComponent as VisibleIcon } from '@/assets/visible.svg';
-import { ReactComponent as HiddenIcon } from '@/assets/hidden.svg';
 import { KeyboardReactInterface } from 'react-simple-keyboard';
+
 import * as styles from './Login.module.scss';
+
+import { ReactComponent as HiddenIcon } from '@/assets/hidden.svg';
+import { ReactComponent as VisibleIcon } from '@/assets/visible.svg';
+import { Input, Button, KeyboardWrapper } from '@/components';
 
 export default function LoginPage() {
   const [username, setUsername] = useState('');
@@ -32,7 +34,7 @@ export default function LoginPage() {
 
   function handleSubmit() {
     setInputError(validateInputs(password));
-    console.log('Login:', { username, password });
+    console.info('Login:', { username, password });
   }
 
   function togglePassword() {
