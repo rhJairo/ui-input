@@ -5,8 +5,6 @@
   width: 100%;
   line-height: 1.25rem;
   outline: none;
-  caret-color: transparent;
-  user-select: none;
   font-size: 2rem;
   font-weight: 600;
   display: flex;
@@ -14,6 +12,8 @@
   border: 0.5rem solid #c2c2c2;
   border-radius: 0.5rem;
   overflow: hidden;
+  caret-color: transparent;
+  user-select: none;
 
   &:focus {
     box-shadow: 0 0 0 3px #3b82f626;

@@ -6,7 +6,7 @@ import { handleInputKeyDown } from './helper';
 export interface InputProps {
   value: string;
   onChange: (v: string) => void;
-  placeholder?: string;
+  label?: string;
   visible?: boolean;
   onFocus?: () => void;
 }
@@ -14,7 +14,7 @@ export interface InputProps {
 export default function Input({
   value,
   onChange,
-  placeholder,
+  label,
   visible = true,
   onFocus,
 }: InputProps) {
@@ -59,10 +59,9 @@ export default function Input({
       ref={containerRef}
       role="textbox"
       aria-multiline="false"
-      aria-label={placeholder}
+      aria-label={label}
       tabIndex={0}
       className={clsx(styles.input)}
-      data-placeholder={placeholder}
       onKeyDown={(e) =>
         handleInputKeyDown(e, value, caretIndex, onChange, setCaretIndex)
       }

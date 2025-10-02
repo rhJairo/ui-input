@@ -8,7 +8,7 @@ import * as styles from './Login.module.scss';
 export default function LoginPage() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [isVisible, setIsVisible] = useState(true);
+  const [isVisible, setIsVisible] = useState(false);
   const keyboardRef = useRef<KeyboardReactInterface>(null);
   const [focusedField, setFocusedField] = useState<
     'username' | 'password' | null
@@ -35,17 +35,19 @@ export default function LoginPage() {
       <h1>User Login</h1>
       <div className={styles.wrapper}>
         <div className={styles.loginForm}>
+          <span className={styles.label}>Username:</span>
           <Input
             value={username}
             onChange={setUsername}
-            placeholder="Username"
+            label="Username"
             onFocus={() => setFocusedField('username')}
           />
+          <span className={styles.label}>Password:</span>
           <div className={styles.password}>
             <Input
               value={password}
               onChange={setPassword}
-              placeholder="Password"
+              label="Password"
               visible={isVisible}
               onFocus={() => setFocusedField('password')}
             />
