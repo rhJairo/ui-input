@@ -37,15 +37,6 @@ export default [
       },
     },
     rules: {
-      // 'prettier/prettier': [
-      //   'error',
-      //   {
-      //     singleQuote: true,
-      //     semi: true,
-      //     endOfLine: 'lf',
-      //     trailingComma: 'es5',
-      //   },
-      // ],
       // TS
       '@typescript-eslint/no-unused-vars': [
         'warn',
