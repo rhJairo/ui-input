@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "type": "module",
   "scripts": {
     "clean": "rimraf dist node_modules .cache",
     "dev": "cross-env NODE_ENV=development webpack serve --config webpack.config.js",
